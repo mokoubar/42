@@ -18,8 +18,8 @@
 #include <stdlib.h>
 #include "../libft/libft.h"
 
-int     ft_printf(const char *str, ...);
-
-
+int		ft_printf(const char *str, ...);
+int		print_char(char c);
+int		print_string(char *str);
 
 #endif
