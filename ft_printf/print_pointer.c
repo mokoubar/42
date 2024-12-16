@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   print_pointer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mokoubar <mokoubar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 09:59:55 by mokoubar          #+#    #+#             */
-/*   Updated: 2024/12/15 16:40:20 by mokoubar         ###   ########.fr       */
+/*   Created: 2024/12/13 18:00:07 by mokoubar          #+#    #+#             */
+/*   Updated: 2024/12/16 11:15:22 by mokoubar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_char(char c)
+int print_pointer(long n)
 {
-    write(1, &c, 1);
-    return (1);
+	int	i;
+
+	i = 0;
+	i += print_char('0');
+	i += print_char('x');
+	i += print_hexa(n, "0123456789abcdef");
+	return (i);
 }

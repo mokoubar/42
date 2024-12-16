@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_char.c                                       :+:      :+:    :+:   */
+/*   print_integer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mokoubar <mokoubar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/10 09:59:55 by mokoubar          #+#    #+#             */
-/*   Updated: 2024/12/15 16:40:20 by mokoubar         ###   ########.fr       */
+/*   Created: 2024/12/13 17:43:52 by mokoubar          #+#    #+#             */
+/*   Updated: 2024/12/15 18:01:46 by mokoubar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int print_char(char c)
+int print_integer(long	n)
 {
-    write(1, &c, 1);
-    return (1);
+	int	i;
+
+	i = 0;
+	if (n < 0)
+		n *= -1;
+	else if (n < 10)
+		i += print_char(n + '0');
+	else if (n >= 10)
+	{
+		i += print_integer(n / 10);
+		i += print_integer(n % 10);
+	}
+	return (i);
 }

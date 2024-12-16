@@ -6,7 +6,7 @@
 /*   By: mokoubar <mokoubar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 11:26:40 by mokoubar          #+#    #+#             */
-/*   Updated: 2024/12/12 09:54:19 by mokoubar         ###   ########.fr       */
+/*   Updated: 2024/12/16 11:14:31 by mokoubar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 
 #include <stdarg.h>
 #include <unistd.h>
-#include <stdlib.h>
+#include <stdio.h>
 #include "../libft/libft.h"
 
 int		ft_printf(const char *str, ...);
 int		print_char(char c);
 int		print_string(char *str);
+int		print_pointer(long n);
+int		print_integer(long	n);
+int		print_hexa(long n, char *str);
 
 #endif

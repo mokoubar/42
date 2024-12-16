@@ -6,58 +6,59 @@
 /*   By: mokoubar <mokoubar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 10:21:20 by mokoubar          #+#    #+#             */
-/*   Updated: 2024/12/10 09:51:31 by mokoubar         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:00:09 by mokoubar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_type(char c, void *arg)
+static int	print_type(const char *str, void *arg)
 {
-	int	j;
+	int	i;
 
-	j = 0;
-	if (c == '%')
-		j =+ print_char(c);
-	else if (c == 'c')
-		j += print_char((char)arg);
-	else if (c == 's')
-		j += print_string((char *)arg);
-	else if (c == 'p')
-		j += print_pointer();
-	else if (c == 'd')
-		j += print_integer((int)arg);
-	else if (c == 'i')
-		j += print_integer((int)arg);
-	else if (c == 'u')
-		j += print_unsigneddecimal((unsigned int)arg);
-	else if (c == 'x')
-		j += print_lowercasehexadecimal();
-	else if (c == 'X')
-		j += print_uppercasehexadecimal();
-	return (j);
+	i = 0;
+	if (*str == '%')
+		i =+ print_char('%');
+	else if (*str == 'c')
+		i += print_char((long)arg);
+	else if (*str == 's')
+		i += print_string((char *)arg);
+	else if (*str == 'p')
+		i += print_pointer((long)arg);
+	else if (*str == 'd' || *str == 'i' || *str == 'u')
+		i += print_integer((long)arg);
+	else if (*str == 'x')
+		i += print_hexa((long)arg, "0123456789abcdef");
+	else if (*str == 'X')
+		i += print_hexa((long)arg, "0123456789ABCDEF");
+	return (i);
 }
 
 int	ft_printf(const char * str, ...)
 {
-    int i;
-	int	j;
+	int	i;
     va_list args;
 
-    i = 0;
-	j = 0;
+	i = 0;
     va_start(args, str);
-    while (str[i])
+    while (*str)
     {
-		if (str[i] == "%")
-			j += print_type(str[i], va_arg(args, void *));
-		else
+		if (*str == '%')
 		{
-			write(1, &str[i], 1);
-			j++;
+			str++;
+			i += print_type(str, va_arg(args, void *));
 		}
-		i++;
+		else
+			i += print_char(*str);
+		str++;
     }
 	va_end(args);
-	return (j);
+	return (i);
+}
+
+int main()
+{
+	ft_printf("%c\n", 65);
+	printf("%x\n", 231);
+	return 0;
 }
