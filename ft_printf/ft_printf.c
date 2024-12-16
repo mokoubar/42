@@ -6,7 +6,7 @@
 /*   By: mokoubar <mokoubar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 10:21:20 by mokoubar          #+#    #+#             */
-/*   Updated: 2024/12/16 12:00:09 by mokoubar         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:02:05 by mokoubar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,4 @@ int	ft_printf(const char * str, ...)
     }
 	va_end(args);
 	return (i);
-}
-
-int main()
-{
-	ft_printf("%c\n", 65);
-	printf("%x\n", 231);
-	return 0;
 }
