@@ -6,31 +6,33 @@
 /*   By: mokoubar <mokoubar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 10:21:20 by mokoubar          #+#    #+#             */
-/*   Updated: 2024/12/16 12:02:05 by mokoubar         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:13:04 by mokoubar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	print_type(const char *str, void *arg)
+static int	print_type(const char *str, va_list args)
 {
 	int	i;
 
 	i = 0;
 	if (*str == '%')
-		i =+ print_char('%');
+		i += print_char('%');
 	else if (*str == 'c')
-		i += print_char((long)arg);
+		i += print_char(va_arg(args, int));
 	else if (*str == 's')
-		i += print_string((char *)arg);
+		i += print_string(va_arg(args, char *));
 	else if (*str == 'p')
-		i += print_pointer((long)arg);
-	else if (*str == 'd' || *str == 'i' || *str == 'u')
-		i += print_integer((long)arg);
+		i += print_pointer(va_arg(args, void *));
+	else if (*str == 'd' || *str == 'i')
+		i += print_integer(va_arg(args, int));
+	else if (*str == 'u')
+		i += print_unsigned(va_arg(args, unsigned int));
 	else if (*str == 'x')
-		i += print_hexa((long)arg, "0123456789abcdef");
+		i += print_hexa(va_arg(args, unsigned int), "0123456789abcdef");
 	else if (*str == 'X')
-		i += print_hexa((long)arg, "0123456789ABCDEF");
+		i += print_hexa(va_arg(args, unsigned int), "0123456789ABCDEF");
 	return (i);
 }
 
@@ -46,7 +48,7 @@ int	ft_printf(const char * str, ...)
 		if (*str == '%')
 		{
 			str++;
-			i += print_type(str, va_arg(args, void *));
+			i += print_type(str, args);
 		}
 		else
 			i += print_char(*str);
@@ -55,3 +57,11 @@ int	ft_printf(const char * str, ...)
 	va_end(args);
 	return (i);
 }
+//#include <stdio.h>
+//#include <limits.h>
+//int main()
+//{
+//	ft_printf(" %x ", LONG_MAX);
+//	printf(" %x ", LONG_MAX);
+//	return 0;
+//}

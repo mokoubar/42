@@ -6,7 +6,7 @@
 /*   By: mokoubar <mokoubar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 11:26:40 by mokoubar          #+#    #+#             */
-/*   Updated: 2024/12/16 12:02:02 by mokoubar         ###   ########.fr       */
+/*   Updated: 2024/12/28 16:12:49 by mokoubar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 int		ft_printf(const char *str, ...);
 int		print_char(char c);
 int		print_string(char *str);
-int		print_pointer(long n);
-int		print_integer(long	n);
-int		print_hexa(long n, char *str);
+int		print_pointer(void *n);
+int		print_integer(int	n);
+int		print_unsigned(unsigned int n);
+int		print_hexa(unsigned int n, char *str);
 
 #endif
